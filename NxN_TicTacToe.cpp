@@ -8,6 +8,7 @@ class tic_tac_toe
     char **tab;
     int turn = 0;
     bool victory = false;
+    int plays = 0;
 
 public:
     tic_tac_toe(int s)
@@ -67,6 +68,7 @@ void tic_tac_toe::play(int x, int y)
         if (turn == 0)
         {
             tab[x][y] = 'O';
+            plays++;
             if(check(x,y,'O'))
             {
                 print();
@@ -78,6 +80,7 @@ void tic_tac_toe::play(int x, int y)
         else
         {
             tab[x][y] = 'X';
+            plays++;
             if(check(x,y,'X'))
             {
                 print();
@@ -85,6 +88,12 @@ void tic_tac_toe::play(int x, int y)
                 victory = true;
                 return;
             } 
+        }
+        if(plays == size*size)
+        {
+            cout << "Draw" << endl;
+            victory = true;
+            return;
         }
         
     }
